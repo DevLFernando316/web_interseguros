@@ -1,0 +1,21 @@
+<template>
+  <div class="home">
+    <HeroSection />
+    <AboutSection />
+    <ServicesSection />
+    <ValueProposition />
+    <StatsSection />
+    <CTASection />
+  </div>
+</template>
+
+<script setup>
+import HeroSection from "@/components/home/HeroSection.vue";
+import AboutSection from "@/components/home/AboutSection.vue";
+import ServicesSection from "@/components/home/ServicesSection.vue";
+import ValueProposition from "@/components/home/ValueProposition.vue";
+import StatsSection from "@/components/home/StatsSection.vue";
+import CTASection from "@/components/home/CTASection.vue";
+</script>
+
+<style scoped></style>
