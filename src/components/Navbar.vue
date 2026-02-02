@@ -1,14 +1,17 @@
 <template>
-  <nav class="navbar navbar-expand-lg fixed-top" :class="{ scrolled: isScrolled }">
+  <nav
+    class="navbar navbar-expand-lg fixed-top"
+    :class="{ scrolled: isScrolled }"
+  >
     <div class="container">
       <router-link to="/" class="navbar-brand">
         <i class="bi bi-shield-check"></i> Inter<span>seguros</span>
       </router-link>
-      
-      <button 
-        class="navbar-toggler" 
-        type="button" 
-        data-bs-toggle="collapse" 
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
         data-bs-target="#navbarNav"
         aria-controls="navbarNav"
         aria-expanded="false"
@@ -16,26 +19,52 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      
+
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-center">
           <li class="nav-item">
-            <router-link to="/" class="nav-link" :class="{ active: isActive('/') }">
+            <router-link
+              to="/"
+              class="nav-link"
+              :class="{ active: isActive('/') }"
+            >
               Inicio
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/nosotros" class="nav-link" :class="{ active: isActive('/nosotros') }">
+            <router-link
+              to="/nosotros"
+              class="nav-link"
+              :class="{ active: isActive('/nosotros') }"
+            >
               Nosotros
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/servicios" class="nav-link" :class="{ active: isActive('/servicios') }">
+            <router-link
+              to="/servicios"
+              class="nav-link"
+              :class="{ active: isActive('/servicios') }"
+            >
               Servicios
             </router-link>
           </li>
+          <!-- NUEVO: Link al Blog -->
           <li class="nav-item">
-            <router-link to="/contacto" class="nav-link" :class="{ active: isActive('/contacto') }">
+            <router-link
+              to="/blog"
+              class="nav-link"
+              :class="{ active: isActive('/blog') }"
+            >
+              <i class="bi bi-newspaper"></i> Blog
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link
+              to="/contacto"
+              class="nav-link"
+              :class="{ active: isActive('/contacto') }"
+            >
               Contacto
             </router-link>
           </li>
@@ -51,27 +80,31 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, onMounted, onUnmounted } from "vue";
+import { useRoute } from "vue-router";
 
-const route = useRoute()
-const isScrolled = ref(false)
+const route = useRoute();
+const isScrolled = ref(false);
 
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 50
-}
+  isScrolled.value = window.scrollY > 50;
+};
 
 const isActive = (path) => {
-  return route.path === path
-}
+  // Mejorado para detectar rutas del blog
+  if (path === "/blog") {
+    return route.path.startsWith("/blog");
+  }
+  return route.path === path;
+};
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
+  window.addEventListener("scroll", handleScroll);
+});
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <style scoped>
@@ -113,7 +146,7 @@ onUnmounted(() => {
 }
 
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 50%;
@@ -132,6 +165,12 @@ onUnmounted(() => {
 .nav-link:hover,
 .nav-link.active {
   color: var(--accent-color);
+}
+
+/* Icono del blog con espaciado */
+.nav-link i {
+  margin-right: 5px;
+  font-size: 0.95rem;
 }
 
 .btn-contact {

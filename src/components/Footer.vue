@@ -5,20 +5,32 @@
         <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
           <h5><i class="bi bi-shield-check"></i> Interseguros</h5>
           <p class="text-white-50">
-            Soluciones estratégicas en gestión y transferencia del riesgo. 
+            Soluciones estratégicas en gestión y transferencia del riesgo.
             Protegemos tu patrimonio, tu familia y tu negocio.
           </p>
           <div class="social-links">
             <a href="#" aria-label="Facebook" title="Facebook">
               <i class="bi bi-facebook"></i>
             </a>
-            <a href="https://instagram.com/interseguros.colombia" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+            <a
+              href="https://instagram.com/interseguros.colombia"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              title="Instagram"
+            >
               <i class="bi bi-instagram"></i>
             </a>
             <a href="#" aria-label="LinkedIn" title="LinkedIn">
               <i class="bi bi-linkedin"></i>
             </a>
-            <a href="https://wa.me/573178918767" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+            <a
+              href="https://wa.me/573178918767"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              title="WhatsApp"
+            >
               <i class="bi bi-whatsapp"></i>
             </a>
           </div>
@@ -30,6 +42,8 @@
             <li><router-link to="/">Inicio</router-link></li>
             <li><router-link to="/nosotros">Nosotros</router-link></li>
             <li><router-link to="/servicios">Servicios</router-link></li>
+            <!-- NUEVO: Link al Blog -->
+            <li><router-link to="/blog">Blog</router-link></li>
             <li><router-link to="/contacto">Contacto</router-link></li>
           </ul>
         </div>
@@ -37,9 +51,17 @@
         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
           <h5>Servicios</h5>
           <ul class="footer-links">
-            <li><router-link to="/servicios/vida">Seguro de Vida</router-link></li>
-            <li><router-link to="/servicios/vehicular">Seguros Vehiculares</router-link></li>
-            <li><router-link to="/servicios/salud">Póliza de Salud</router-link></li>
+            <li>
+              <router-link to="/servicios/vida">Seguro de Vida</router-link>
+            </li>
+            <li>
+              <router-link to="/servicios/vehicular"
+                >Seguros Vehiculares</router-link
+              >
+            </li>
+            <li>
+              <router-link to="/servicios/salud">Póliza de Salud</router-link>
+            </li>
             <li><router-link to="/servicios/arl">ARL</router-link></li>
           </ul>
         </div>
@@ -53,7 +75,11 @@
             </li>
             <li>
               <i class="bi bi-instagram me-2"></i>
-              <a href="https://instagram.com/interseguros.colombia" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://instagram.com/interseguros.colombia"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 @interseguros.colombia
               </a>
             </li>
@@ -63,7 +89,9 @@
             </li>
             <li>
               <i class="bi bi-envelope me-2"></i>
-              <a href="mailto:info@interseguros.com.co">info@interseguros.com.co</a>
+              <a href="mailto:info@interseguros.com.co"
+                >info@interseguros.com.co</a
+              >
             </li>
           </ul>
         </div>
@@ -71,8 +99,16 @@
 
       <div class="footer-bottom">
         <p>
-          &copy; {{ currentYear }} Interseguros. Todos los derechos reservados. | 
-          Diseñado con <i class="bi bi-heart-fill text-danger"></i> para proteger lo que más importa
+          &copy; {{ currentYear }} Interseguros. Todos los derechos reservados.
+          | Desarrollado por
+          <a
+            href=""
+            target="_blank"
+            rel="noopener noreferrer"
+            class="developer-link"
+          >
+            lFernando316
+          </a>
         </p>
       </div>
     </div>
@@ -80,9 +116,9 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed } from "vue";
 
-const currentYear = computed(() => new Date().getFullYear())
+const currentYear = computed(() => new Date().getFullYear());
 </script>
 
 <style scoped>
