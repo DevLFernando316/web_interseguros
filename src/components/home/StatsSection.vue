@@ -1,14 +1,16 @@
 <template>
-  <section class="stats-section section">
+  <section class="stats-section section" ref="statsSection">
     <div class="container">
       <div class="row">
-        <div 
-          v-for="(stat, index) in stats" 
-          :key="index" 
+        <div
+          v-for="(stat, index) in stats"
+          :key="index"
           class="col-lg-3 col-md-6 mb-4 mb-lg-0"
         >
           <div class="stat-item">
-            <div class="stat-number">{{ stat.number }}</div>
+            <div class="stat-number">
+              {{ displayedNumbers[index] }}{{ stat.suffix }}
+            </div>
             <div class="stat-label">{{ stat.label }}</div>
           </div>
         </div>
@@ -18,24 +20,102 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from "vue";
+
 const stats = [
-  { number: '1500+', label: 'Clientes Satisfechos' },
-  { number: '25+', label: 'Aseguradoras Aliadas' },
-  { number: '99%', label: 'Tasa de Satisfacción' },
-  { number: '24/7', label: 'Atención Disponible' }
-]
+  { number: 1500, suffix: "+", label: "Clientes Satisfechos" },
+  { number: 25, suffix: "+", label: "Aseguradoras Aliadas" },
+  { number: 99, suffix: "%", label: "Tasa de Satisfacción" },
+  { number: 24, suffix: "/7", label: "Atención Disponible" },
+];
+
+const displayedNumbers = ref([0, 0, 0, 0]);
+const statsSection = ref(null);
+let observer = null;
+let hasAnimated = false;
+
+// Función para animar un número desde 0 hasta el valor final
+const animateNumber = (index, targetNumber, duration = 2000) => {
+  const startTime = Date.now();
+  const startNumber = 0;
+
+  const updateNumber = () => {
+    const currentTime = Date.now();
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+
+    // Easing function (ease-out)
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+
+    const currentNumber = Math.floor(
+      startNumber + (targetNumber - startNumber) * easeOut,
+    );
+    displayedNumbers.value[index] = currentNumber;
+
+    if (progress < 1) {
+      requestAnimationFrame(updateNumber);
+    } else {
+      displayedNumbers.value[index] = targetNumber;
+    }
+  };
+
+  requestAnimationFrame(updateNumber);
+};
+
+// Función para iniciar todas las animaciones
+const startCounters = () => {
+  if (hasAnimated) return;
+  hasAnimated = true;
+
+  stats.forEach((stat, index) => {
+    // Delay escalonado para cada contador
+    setTimeout(() => {
+      animateNumber(index, stat.number, 2000);
+    }, index * 100);
+  });
+};
+
+onMounted(() => {
+  // Intersection Observer para detectar cuando la sección es visible
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          startCounters();
+        }
+      });
+    },
+    {
+      threshold: 0.3, // Se activa cuando el 30% de la sección es visible
+    },
+  );
+
+  if (statsSection.value) {
+    observer.observe(statsSection.value);
+  }
+});
+
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect();
+  }
+});
 </script>
 
 <style scoped>
 .stats-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
   color: var(--white);
   position: relative;
   overflow: hidden;
 }
 
 .stats-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -51,6 +131,36 @@ const stats = [
   padding: 2rem 1rem;
   position: relative;
   z-index: 1;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.stat-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stat-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stat-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stat-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .stat-number {
@@ -60,6 +170,11 @@ const stats = [
   margin-bottom: 0.5rem;
   line-height: 1;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  font-variant-numeric: tabular-nums;
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .stat-label {
@@ -71,6 +186,7 @@ const stats = [
 @media (max-width: 991px) {
   .stat-number {
     font-size: 3rem;
+    min-height: 3.5rem;
   }
 
   .stat-label {
@@ -81,6 +197,7 @@ const stats = [
 @media (max-width: 576px) {
   .stat-number {
     font-size: 2.5rem;
+    min-height: 3rem;
   }
 }
 </style>

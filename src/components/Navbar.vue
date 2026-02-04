@@ -5,7 +5,11 @@
   >
     <div class="container">
       <router-link to="/" class="navbar-brand">
-        <i class="bi bi-shield-check"></i> Inter<span>seguros</span>
+        <img
+          src="@/assets/images/logo_interseguros.png"
+          alt="Interseguros"
+          class="navbar-logo"
+        />
       </router-link>
 
       <button
@@ -49,7 +53,6 @@
               Servicios
             </router-link>
           </li>
-          <!-- NUEVO: Link al Blog -->
           <li class="nav-item">
             <router-link
               to="/blog"
@@ -91,7 +94,6 @@ const handleScroll = () => {
 };
 
 const isActive = (path) => {
-  // Mejorado para detectar rutas del blog
   if (path === "/blog") {
     return route.path.startsWith("/blog");
   }
@@ -121,19 +123,24 @@ onUnmounted(() => {
 }
 
 .navbar-brand {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary-color);
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .navbar-brand:hover {
-  color: var(--secondary-color);
+  opacity: 0.8;
 }
 
-.navbar-brand span {
-  color: var(--accent-color);
+.navbar-logo {
+  height: 55px;
+  width: auto;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled .navbar-logo {
+  height: 50px;
 }
 
 .nav-link {
@@ -167,7 +174,6 @@ onUnmounted(() => {
   color: var(--accent-color);
 }
 
-/* Icono del blog con espaciado */
 .nav-link i {
   margin-right: 5px;
   font-size: 0.95rem;
@@ -175,7 +181,7 @@ onUnmounted(() => {
 
 .btn-contact {
   background: var(--accent-color);
-  color: var(--white);
+  color: var(--text-dark);
   padding: 0.6rem 1.5rem;
   border-radius: 30px;
   font-weight: 600;
@@ -188,8 +194,8 @@ onUnmounted(() => {
 .btn-contact:hover {
   background: var(--accent-light);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
-  color: var(--white);
+  box-shadow: 0 5px 15px rgba(15, 255, 168, 0.3);
+  color: var(--text-dark);
 }
 
 .navbar-toggler {
@@ -201,6 +207,14 @@ onUnmounted(() => {
 }
 
 @media (max-width: 991px) {
+  .navbar-logo {
+    height: 40px;
+  }
+
+  .navbar.scrolled .navbar-logo {
+    height: 35px;
+  }
+
   .nav-link {
     margin: 0.5rem 0;
   }
