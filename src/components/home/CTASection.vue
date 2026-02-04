@@ -3,7 +3,7 @@
     <div class="container text-center">
       <div class="cta-content">
         <h2>
-          En Interseguros convertimos el seguro en una herramienta de 
+          En Interseguros convertimos el seguro en una herramienta de
           estabilidad, control y crecimiento
         </h2>
         <p>Protege lo que más valoras con soluciones integrales de seguros</p>
@@ -15,8 +15,7 @@
   </section>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style scoped>
 .cta-section {
@@ -28,18 +27,23 @@
 }
 
 .cta-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -10%;
   width: 120%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
   animation: pulse 4s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
@@ -85,7 +89,6 @@
 .btn-cta:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  color: var(--accent-color);
 }
 
 @media (max-width: 768px) {
