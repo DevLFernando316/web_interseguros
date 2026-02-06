@@ -3,33 +3,68 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-          <h5><i class="bi bi-shield-check"></i> Interseguros</h5>
+          <div class="footer-brand">
+            <img
+              src="@/assets/images/logo_interseguros_white.png"
+              alt="Interseguros"
+              class="footer-logo"
+            />
+          </div>
           <p class="text-white-50">
             Soluciones estratégicas en gestión y transferencia del riesgo.
             Protegemos tu patrimonio, tu familia y tu negocio.
           </p>
           <div class="social-links">
-            <a href="#" aria-label="Facebook" title="Facebook">
+            <!-- Facebook - COMENTADO -->
+            <!-- <a
+              href="https://facebook.com/interseguros"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              class="social-link"
+            >
               <i class="bi bi-facebook"></i>
-            </a>
+            </a> -->
+
             <a
-              href="https://instagram.com/interseguros.colombia"
+              href="https://www.instagram.com/interseguros.colombia/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              title="Instagram"
+              class="social-link"
             >
               <i class="bi bi-instagram"></i>
             </a>
-            <a href="#" aria-label="LinkedIn" title="LinkedIn">
+
+            <!-- LinkedIn - COMENTADO -->
+            <!-- <a
+              href="https://linkedin.com/company/interseguros"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              class="social-link"
+            >
               <i class="bi bi-linkedin"></i>
-            </a>
+            </a> -->
+
+            <!-- TikTok - NUEVO -->
             <a
-              href="https://wa.me/573178918767"
+              href="https://www.tiktok.com/@interseguros.colombia?_r=1&_t=ZS-93feZ4UO7AV"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              class="social-link"
+            >
+              <i class="bi bi-tiktok"></i>
+            </a>
+
+            <!-- WhatsApp con mensaje predefinido -->
+            <a
+              href="https://wa.me/573178918767?text=Hola%20Interseguros,%20me%20gustaría%20obtener%20información%20sobre%20sus%20servicios%20de%20seguros.%20¿Podrían%20ayudarme?"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              title="WhatsApp"
+              class="social-link"
             >
               <i class="bi bi-whatsapp"></i>
             </a>
@@ -134,7 +169,14 @@ const currentYear = computed(() => new Date().getFullYear());
   margin-bottom: 1.5rem;
   color: var(--accent-color);
 }
+.footer-brand {
+  margin-bottom: 1.5rem;
+}
 
+.footer-logo {
+  height: 50px;
+  width: auto;
+}
 .footer-links {
   list-style: none;
   padding: 0;

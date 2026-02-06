@@ -41,7 +41,7 @@ onUnmounted(() => {
 .scroll-to-top {
   position: fixed;
   bottom: 2rem;
-  right: 6rem; /* A la izquierda del botón de WhatsApp */
+  right: 7rem; /* A la izquierda del botón de WhatsApp */
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -89,8 +89,8 @@ onUnmounted(() => {
   .scroll-to-top {
     bottom: 1.5rem;
     right: 5.5rem;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     font-size: 1.3rem;
   }
 }
@@ -99,8 +99,8 @@ onUnmounted(() => {
   .scroll-to-top {
     bottom: 1rem;
     right: 5rem;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     font-size: 1.2rem;
   }
 }

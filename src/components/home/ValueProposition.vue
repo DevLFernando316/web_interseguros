@@ -5,13 +5,7 @@
         <!-- Columna Izquierda: Video -->
         <div class="col-lg-5 mb-4 mb-lg-0">
           <div class="video-container" ref="videoContainer">
-            <video
-              ref="videoPlayer"
-              class="value-video"
-              loop
-              playsinline
-              @click="togglePlay"
-            >
+            <video ref="videoPlayer" class="value-video" playsinline>
               <source
                 src="@/assets/videos/presentacion_interseguros.mp4"
                 type="video/mp4"
@@ -119,10 +113,10 @@ onMounted(() => {
           entry.target.classList.add("animate-in");
 
           // Auto-play video cuando sea visible
-          if (entry.target === videoContainer.value && videoPlayer.value) {
-            videoPlayer.value.play();
-            isPlaying.value = true;
-          }
+          // if (entry.target === videoContainer.value && videoPlayer.value) {
+          //   videoPlayer.value.play();
+          //   isPlaying.value = true;
+          // }
         }
       });
     },

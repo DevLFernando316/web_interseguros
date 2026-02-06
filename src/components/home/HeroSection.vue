@@ -1,27 +1,32 @@
 <template>
   <section class="hero-section">
+    <div class="hero-background">
+      <img
+        src="@/assets/images/Banner_principal.png"
+        alt="Interseguros"
+        class="hero-image"
+      />
+    </div>
+
     <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 hero-content fade-in">
-          <h1 class="hero-title">
-            Soluciones Estratégicas en Gestión y Transferencia del Riesgo
-          </h1>
-          <p class="hero-subtitle">
-            Protegemos tu patrimonio, tu familia y tu negocio con asesoría
-            especializada y soluciones integrales de seguros.
-          </p>
-          <div class="hero-buttons">
-            <router-link to="/servicios" class="btn btn-primary-custom">
-              Conocer Servicios <i class="bi bi-arrow-right"></i>
-            </router-link>
-            <router-link to="/contacto" class="btn btn-outline-light-custom">
-              Contactar Asesor
-            </router-link>
-          </div>
-        </div>
-        <div class="col-lg-6 hero-image slide-in-right">
-          <div class="hero-illustration">
-            <i class="bi bi-shield-check"></i>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              Soluciones Estratégicas en Gestión y Transferencia del Riesgo
+            </h1>
+            <p class="hero-subtitle">
+              Protegemos tu patrimonio, tu familia y tu negocio con asesoría
+              especializada y soluciones integrales de seguros.
+            </p>
+            <div class="hero-buttons">
+              <router-link to="/servicios" class="btn btn-primary-custom">
+                Conocer Servicios <i class="bi bi-arrow-right"></i>
+              </router-link>
+              <router-link to="/contacto" class="btn btn-outline-light-custom">
+                Contactar Asesor
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -33,106 +38,71 @@
 
 <style scoped>
 .hero-section {
-  background: linear-gradient(
-    135deg,
-    var(--primary-color) 0%,
-    var(--secondary-color) 100%
-  );
-  color: var(--white);
-  height: calc(100vh - var(--navbar-height));
+  position: relative;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  position: relative;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 10%,
+    var(--secondary-color) 100%
+  );
   overflow: hidden;
-  padding: 2rem 0;
-  margin-top: var(--navbar-height);
 }
 
-/* Para pantallas con poca altura */
-@media (max-height: 800px) {
-  .hero-section {
-    min-height: auto;
-    padding: calc(var(--navbar-height) + 1rem) 0 2rem 0;
-  }
-
-  .hero-title {
-    font-size: 2.3rem;
-    margin-bottom: 1rem;
-    line-height: 1.1;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .hero-illustration {
-    font-size: 10rem;
-  }
-
-  .hero-buttons .btn {
-    padding: 0.8rem 1.5rem;
-  }
+.hero-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
 }
 
-/* Desktop con poca altura - ocultar escudo para más espacio */
-@media (min-width: 992px) and (max-height: 750px) {
-  .hero-illustration {
-    display: none;
-  }
-}
-
-/* Para pantallas MUY pequeñas en altura */
-@media (max-height: 700px) {
-  .hero-section {
-    padding: calc(var(--navbar-height) + 0.5rem) 0 1.5rem 0;
-  }
-
-  .hero-title {
-    font-size: 2rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .hero-subtitle {
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-  }
-
-  .hero-illustration {
-    display: none;
-  }
-}
-
-.hero-section::before {
+.hero-background::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,101.3C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-  background-size: cover;
-  opacity: 0.1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    var(--primary-color) 0%,
+    transparent 20%
+  );
+  z-index: 2;
+}
+
+.hero-image {
+  margin-top: 10%;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.container {
+  position: relative;
+  z-index: 3;
 }
 
 .hero-content {
-  position: relative;
-  z-index: 1;
+  color: white;
+  padding: 2rem 0;
 }
 
 .hero-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  line-height: 1.1;
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
 .hero-subtitle {
-  font-size: 1.1rem;
-  font-weight: 300;
-  margin-bottom: 1.5rem;
+  font-size: 1.15rem;
+  margin-bottom: 2rem;
   opacity: 0.95;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .hero-buttons {
@@ -141,75 +111,52 @@
   flex-wrap: wrap;
 }
 
-.hero-buttons .btn {
-  padding: 0.8rem 1.5rem;
+.btn {
+  padding: 1rem 2rem;
   border-radius: 30px;
   font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   transition: all 0.3s ease;
+}
+
+.btn-primary-custom {
+  background: var(--accent-color);
+  color: var(--text-dark);
+}
+
+.btn-primary-custom:hover {
+  background: var(--accent-light);
+  transform: translateY(-3px);
 }
 
 .btn-outline-light-custom {
   background: transparent;
-  border: 2px solid var(--white);
-  color: var(--white);
-  text-decoration: none;
-  display: inline-block;
+  border: 2px solid white;
+  color: white;
 }
 
 .btn-outline-light-custom:hover {
-  background: var(--white);
+  background: white;
   color: var(--primary-color);
-  transform: translateY(-3px);
-}
-
-.hero-illustration {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15rem;
-  color: rgba(255, 255, 255, 0.1);
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
 }
 
 @media (max-width: 991px) {
-  .hero-section {
-    padding: 2rem 0;
-    padding-top: 10rem;
+  .hero-background {
+    width: 100%;
+    opacity: 0.2;
   }
 
   .hero-title {
-    font-size: 2.5rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.1rem;
-  }
-
-  .hero-illustration {
-    font-size: 10rem;
-    margin-top: 3rem;
+    font-size: 2.3rem;
   }
 }
 
-@media (max-width: 576px) {
-  .hero-section {
-    padding: 2rem 0;
-    padding-top: 10rem;
-  }
-
+@media (max-width: 768px) {
   .hero-title {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
   }
 
   .hero-subtitle {
@@ -220,14 +167,9 @@
     flex-direction: column;
   }
 
-  .hero-buttons .btn {
+  .btn {
     width: 100%;
-    text-align: center;
-  }
-
-  .hero-illustration {
-    font-size: 8rem;
-    margin-top: 2rem;
+    justify-content: center;
   }
 }
 </style>

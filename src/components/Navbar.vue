@@ -84,10 +84,12 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
+const router = useRouter();
 const isScrolled = ref(false);
+const navbarCollapse = ref(null);
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50;
@@ -100,12 +102,71 @@ const isActive = (path) => {
   return route.path === path;
 };
 
+// Cerrar el menú móvil
+const closeMenu = () => {
+  const navbar = document.getElementById("navbarNav");
+  const toggler = document.querySelector(".navbar-toggler");
+
+  if (navbar && navbar.classList.contains("show")) {
+    // Usar Bootstrap collapse para cerrar
+    const bsCollapse =
+      bootstrap.Collapse.getInstance(navbar) ||
+      new bootstrap.Collapse(navbar, { toggle: false });
+    bsCollapse.hide();
+  }
+};
+
+// Cerrar menú al hacer click en un link
+const handleLinkClick = () => {
+  closeMenu();
+};
+
+// Cerrar menú al hacer click fuera
+const handleClickOutside = (event) => {
+  const navbar = document.getElementById("navbarNav");
+  const toggler = document.querySelector(".navbar-toggler");
+
+  if (navbar && navbar.classList.contains("show")) {
+    if (!navbar.contains(event.target) && !toggler.contains(event.target)) {
+      closeMenu();
+    }
+  }
+};
+
+// Cerrar menú cuando cambia la ruta
+router.beforeEach(() => {
+  closeMenu();
+});
+
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
+  document.addEventListener("click", handleClickOutside);
+
+  // Agregar event listeners a todos los nav-links
+  navbarCollapse.value = document.getElementById("navbarNav");
+  if (navbarCollapse.value) {
+    const links = navbarCollapse.value.querySelectorAll(
+      ".nav-link, .btn-contact",
+    );
+    links.forEach((link) => {
+      link.addEventListener("click", handleLinkClick);
+    });
+  }
 });
 
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
+  document.removeEventListener("click", handleClickOutside);
+
+  // Limpiar event listeners
+  if (navbarCollapse.value) {
+    const links = navbarCollapse.value.querySelectorAll(
+      ".nav-link, .btn-contact",
+    );
+    links.forEach((link) => {
+      link.removeEventListener("click", handleLinkClick);
+    });
+  }
 });
 </script>
 
@@ -134,13 +195,13 @@ onUnmounted(() => {
 }
 
 .navbar-logo {
-  height: 55px;
+  height: 45px;
   width: auto;
   transition: all 0.3s ease;
 }
 
 .navbar.scrolled .navbar-logo {
-  height: 50px;
+  height: 40px;
 }
 
 .nav-link {
